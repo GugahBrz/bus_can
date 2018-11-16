@@ -19,11 +19,8 @@ programme de base dans le projet qt en c++
 
 git add *
 
-git push origin master
 
-git add README.md
-
-git commit -m "update README"
+git commit -m "update MESSAGE"
 
 git push origin master
 

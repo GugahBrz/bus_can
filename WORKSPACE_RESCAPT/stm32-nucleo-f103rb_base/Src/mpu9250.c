@@ -18,6 +18,9 @@ float magbias[3] = {0, 0, 0};  // Factory mag calibration and mag bias
 static int32_t	accel_bias_int[3] = {0, 0, 0};
 static int32_t  gyro_bias_int[3] = {0, 0, 0};
 
+//Angles d'Euler (Roll, Pitch and Yaw)
+ volatile float phi=0.0f, theta=0.0f, psi=0.0f;
+
 //================================================================
 //			INIT MPU9250
 //================================================================
@@ -100,16 +103,15 @@ void mpu9250_Step(void)
 		int16_t ay=-(Buf[2]<<8 | Buf[3]);
 		int16_t az=Buf[4]<<8 | Buf[5];
 
-		/*accelBias[0] = accel_bias_int[0] * ACC_TO_G_COND;
-		accelBias[1] = accel_bias_int[1] * ACC_TO_G_COND;
-		accelBias[2] = accel_bias_int[2] * ACC_TO_G_COND;*/
 
 		ax = ax+accel_bias_int[0];
 		ay = ay+accel_bias_int[1];
 		az = az-accel_bias_int[2];
 
+		float axc = ax*ACC_MOD_CONST; //ACC_MOD_CONST = (4/32768)
+		float ayc = ax*ACC_MOD_CONST; //ACC_MOD_CONST = (4/32768)
+		float azc = ax*ACC_MOD_CONST; //ACC_MOD_CONST = (4/32768)
 
-		// TODO: A adapter...
 
 		// ___________________
 		// :::  gyroscope  :::
@@ -118,16 +120,28 @@ void mpu9250_Step(void)
 		int16_t gy=-(Buf[10]<<8 | Buf[11]);
 		int16_t gz=Buf[12]<<8 | Buf[13];
 
-		gx = (gx + gyro_bias_int[0]) * GYRO_TO_RAD_COND;
-		gy = (gy + gyro_bias_int[1]) * GYRO_TO_RAD_COND;
-		gz = (gz - gyro_bias_int[2]) * GYRO_TO_RAD_COND;
-		
-		// ____________________
-		// :::  quaternion  :::
+		float gxc = gx*GYRO_MOD_CONST; //GYRO_MOD_CONST  = (1000.0/32768.0)*(PI/180.0)
+		float gyc = gy*GYRO_MOD_CONST; //GYRO_MOD_CONST  = (1000.0/32768.0)*(PI/180.0)
+		float gzc = gz*GYRO_MOD_CONST; //GYRO_MOD_CONST  = (1000.0/32768.0)*(PI/180.0)
 
-		// MadgwickAHRSupdateIMU
+		MadgwickAHRSupdateIMU(gxc, gyc, gzc, axc, ayc, azc);
 
-		term_printf("%d %d %d \n\r", ax, ay, az);
+		calc_matRot(q0,q1,q2,q3);
+
+		int16_t phi_int, theta_int, psi_int;
+
+		phi=(180.0/PI)*phi;
+		psi=(180.0/PI)*psi;
+		theta=(180.0/PI)*theta;
+
+		phi_int=(int)phi;
+		psi_int=(int)psi;
+		theta_int=(int)theta;
+
+
+		term_printf("Phi(Roll): %d Theta (Pitch): %d Psi (Yaw): %d \n\r",phi_int , theta_int, psi_int);
+
+		//term_printf("%d %d %d \n\r", ax, ay, az);
 
 #if USE_MAGNETOMETER
 	   	//_____________________
@@ -265,6 +279,27 @@ void mpu9250_CalibrateMPU9250()
 	i2c1_WriteRegByte_IT(MPU9250_ADDRESS, YG_OFFSET_L, data[3]);
 	i2c1_WriteRegByte_IT(MPU9250_ADDRESS, ZG_OFFSET_H, data[4]);
 	i2c1_WriteRegByte_IT(MPU9250_ADDRESS, ZG_OFFSET_L, data[5]);*/
+}
+
+void calc_matRot(float q0, float q1, float q2, float q3){
+	double R11, R12, R13, R21, R22, R23, R31, R32, R33;
+
+	//Calcul de la Matrice de Rotation à Partir du Quaternion
+	R11 = pow(q0,2) + pow(q1,2) - pow(q2,2) - pow(q3,2);
+	R12 = 2*(q1*q2 - q0*q3);
+	R13 = 2*(q1*q3 + q0*q2);
+	R21 = 2*(q0*q3 + q1*q2);
+	R22 = pow(q0,2) - pow(q1,2) + pow(q2,2) - pow(q3,2);
+	R23 = 2*(q2*q3 - q0*q1);
+	R31 = 2*(q1*q3 - q0*q2);
+	R32 = 2*(q2*q3 + q0*q1);
+	R33 = pow(q0,2) - pow(q1,2) -pow(q2,2) + pow(q3,2);
+
+	//Calcul des Angles d’Euler à Partir de la matrice de rotation
+	phi = atan2(-R31, R33);
+	theta = asin(R32);
+	psi = atan2(-R12, R22);
+
 }
 
 //=================================================================

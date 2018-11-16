@@ -31,6 +31,7 @@ SRCS += stm32f1xx_hal_msp.c
 SRCS += stm32f1xx_it.c
 SRCS += system_stm32f1xx.c
 SRCS += systemClock.c
+SRCS += MadgwickAHRS.c
 
 SRCS += drv_can.c
 SRCS += drv_spi.c
@@ -84,7 +85,7 @@ INCLUDE = $(addprefix -I,$(INC_DIRS))
 
 DEFS = -DSTM32F103xBt
 
-CFLAGS  = -ggdb -O0
+CFLAGS  = -ggdb -O4
 CFLAGS += -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon
 #CFLAGS += -mlittle-endian -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc
 
