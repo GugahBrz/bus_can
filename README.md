@@ -11,3 +11,17 @@ serie: picocom -b 115200 -r -l /dev/ttyACM*
 qt: /local/qtcreator*/bin/qtcreator
 
 programme de base dans le projet qt en c++
+
+# git
+
+git add *
+
+git push origin master
+
+git add README.md
+
+git commit -m "update README"
+
+git push origin master
+
+git pull
