@@ -15,12 +15,11 @@ le fichier representant la sonde: /dev/pcanusb32
 
 programme de base dans le projet qt en c++
 
-# git
+### git guide
 
 git add *
 
-
-git commit -m "update MESSAGE"
+git commit -m "MESSAGE"
 
 git push origin master
 
