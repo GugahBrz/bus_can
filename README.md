@@ -6,7 +6,6 @@ le fichier representant la sonde: /dev/pcanusb32
 
 ### eclipse
 > /local/sdk_elec/eclipse/eclipse 
-et selectionner le workspace generale.
 
 ### liaison serie
 > picocom -b 115200 -r -l /dev/ttyACM*
