@@ -1,6 +1,8 @@
 
 #include "mpu9250.h"
 
+#define ID_MPU	0x11
+
 enum Mscale {
   MFS_14BITS = 0, // 0.6 mG per LSB
   MFS_16BITS      // 0.15 mG per LSB
@@ -114,7 +116,7 @@ void mpu9250_Step(void)
 
 
 		// ___________________
-		// :::  gyroscope  :::
+		// :::  Gyroscope  :::
 
 		int16_t gx=-(Buf[8]<<8 | Buf[9]);
 		int16_t gy=-(Buf[10]<<8 | Buf[11]);
@@ -138,8 +140,55 @@ void mpu9250_Step(void)
 		psi_int=(int)psi;
 		theta_int=(int)theta;
 
+    char lowerByte1; // Lower byte gx
+    char upperByte1; // Upper byte gx
+    char lowerByte2; // Lower byte phi
+    char upperByte2; // Upper byte phi
+    char lowerByte3; // Lower byte teta
+    char upperByte3; // Upper byte teta
+    char lowerByte4; // Lower byte psi
+    char upperByte4; // Upper byte psi
 
-		term_printf("Phi(Roll): %d Theta (Pitch): %d Psi (Yaw): %d \n\r",phi_int , theta_int, psi_int);
+    // Split short into two char
+
+    lowerByte1 = gx & 0xFF;
+    upperByte1 = gx >> 8;
+
+    lowerByte2 = phi_int & 0xFF;
+    upperByte2 = phi_int >> 8;
+
+    lowerByte3 = theta_int & 0xFF;
+    upperByte3 = theta_int >> 8;
+
+    lowerByte4 = psi_int & 0xFF;
+    upperByte4 = psi_int >> 8;
+
+
+    CAN_Message      txMsg;
+    txMsg.id = ID_MPU; //Card ID
+
+    //Send gx
+    txMsg.data[0] = lowerByte1;//measure from sensor
+    txMsg.data[1] = upperByte1;
+
+    //Send angle for current instant through CAN
+    txMsg.data[2] = lowerByte2;
+    txMsg.data[3] = upperByte2;
+
+    txMsg.data[4] = lowerByte3;
+    txMsg.data[5] = upperByte3;
+
+    txMsg.data[6] = lowerByte4;
+    txMsg.data[7] = upperByte4;
+
+    txMsg.len = 8;
+    txMsg.format = CANStandard;
+    txMsg.type = CANData;
+
+    can_Write(txMsg);
+
+
+		term_printf("Phi(Roll): %d Theta (Pitch): %d Psi (Yaw): %d \n\r", phi_int , theta_int, psi_int);
 
 		//term_printf("%d %d %d \n\r", ax, ay, az);
 
@@ -159,9 +208,9 @@ void mpu9250_Step(void)
     	int16_t mx=-(Mag[3]<<8 | Mag[2]);
     	int16_t my=-(Mag[1]<<8 | Mag[0]);
     	int16_t mz=-(Mag[5]<<8 | Mag[4]);
-    	
+
 #endif
-		
+
   }
 //================================================================
 //			READ ACCELERATION
@@ -303,4 +352,3 @@ void calc_matRot(float q0, float q1, float q2, float q3){
 }
 
 //=================================================================
-
