@@ -33,7 +33,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = QT_CANBUS1.0.0
-DISTDIR = /home/e2017/g7zanoni/Downloads/WORKSPACE_QT/QT_CANBUS/build-QT_CANBUS-Desktop-Debug/.tmp/QT_CANBUS1.0.0
+DISTDIR = /home/e2017/a7capone/CRS/Projet/WORKSPACE_QT/QT_CANBUS/build-QT_CANBUS-Desktop-Debug/.tmp/QT_CANBUS1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) -lpcan -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -308,7 +308,7 @@ compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp
 moc_mainwindow.cpp: ../qt_canbus/mainwindow.h \
 		moc_predefs.h
-	/usr/lib64/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/e2017/g7zanoni/Downloads/WORKSPACE_QT/QT_CANBUS/qt_canbus -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../qt_canbus/mainwindow.h -o moc_mainwindow.cpp
+	/usr/lib64/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib64/qt5/mkspecs/linux-g++ -I/home/e2017/a7capone/CRS/Projet/WORKSPACE_QT/QT_CANBUS/qt_canbus -I/usr/include/qt5 -I/usr/include/qt5/QtWidgets -I/usr/include/qt5/QtGui -I/usr/include/qt5/QtCore -I. -I/usr/include/c++/4.8.5 -I/usr/include/c++/4.8.5/x86_64-redhat-linux -I/usr/include/c++/4.8.5/backward -I/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include -I/usr/local/include -I/usr/include ../qt_canbus/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
