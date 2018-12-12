@@ -140,29 +140,18 @@ void mpu9250_Step(void)
 		psi_int=(int)psi;
 		theta_int=(int)theta;
 
-		char lowerByte1; // Lower byte gx
-		char upperByte1; // Upper byte gx
-		char lowerByte2; // Lower byte phi
-		char upperByte2; // Upper byte phi
-		char lowerByte3; // Lower byte teta
-		char upperByte3; // Upper byte teta
-		char lowerByte4; // Lower byte psi
-		char upperByte4; // Upper byte psi
-
 		// Split short into two char
 
-		lowerByte1 = gx & 0xFF;
-		upperByte1 = gx >> 8;
+		char lowerByte1 = gx & 0xFF; // Lower byte gx
+		char upperByte1 = gx >> 8; // Upper byte gx
+		char lowerByte2 = phi_int & 0xFF; // Lower byte phi
+		char upperByte2 = phi_int >> 8; // Upper byte phi
+		char lowerByte3 = theta_int & 0xFF; // Lower byte teta
+		char upperByte3 = theta_int >> 8; // Upper byte teta
+		char lowerByte4 = psi_int & 0xFF; // Lower byte psi
+		char upperByte4 = psi_int >> 8; // Upper byte psi
 
-		lowerByte2 = phi_int & 0xFF;
-		upperByte2 = phi_int >> 8;
-
-		lowerByte3 = theta_int & 0xFF;
-		upperByte3 = theta_int >> 8;
-
-		lowerByte4 = psi_int & 0xFF;
-		upperByte4 = psi_int >> 8;
-
+		//Test Union
 
 		CAN_Message      txMsg;
 		txMsg.id = ID_MPU; //Card ID
