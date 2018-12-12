@@ -32,12 +32,12 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void openCANPort();
-    void sendCANMessage();
+    //void sendCANMessage();
     void receiveCANMessage();
 
 public slots:
 
-    void onButSendClicked();
+    //void onButSendClicked();
          void onTimer_Tick();
 
 
@@ -49,11 +49,12 @@ private:
 
     Ui::MainWindow  *ui;
      QGridLayout     *m_layout;
-     QPushButton     *but_send;
+     //QPushButton     *but_send;
      QLineEdit       *receive_box_0,*receive_box_1,*receive_box_2,*receive_box_3 ;
      QLineEdit       *receive_box_4,*receive_box_5,*receive_box_6,*receive_box_7 ;
-     QLineEdit       *send_box_0, *send_box_1,*send_box_2,*send_box_3;
-     QLineEdit       *send_box_4, *send_box_5,*send_box_6,*send_box_7;
+     QLineEdit       *mesure_box_0, *mesure_box_1, *mesure_box_2 ;
+     //QLineEdit       *send_box_0, *send_box_1,*send_box_2,*send_box_3;
+     //QLineEdit       *send_box_4, *send_box_5,*send_box_6,*send_box_7;
 
     QTimer *timer_tick;
 };
