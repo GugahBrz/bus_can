@@ -140,52 +140,52 @@ void mpu9250_Step(void)
 		psi_int=(int)psi;
 		theta_int=(int)theta;
 
-		char lowerByte1; // Lower byte gx
-		char upperByte1; // Upper byte gx
-		char lowerByte2; // Lower byte phi
-		char upperByte2; // Upper byte phi
-		char lowerByte3; // Lower byte teta
-		char upperByte3; // Upper byte teta
-		char lowerByte4; // Lower byte psi
-		char upperByte4; // Upper byte psi
+    char lowerByte1; // Lower byte gx
+    char upperByte1; // Upper byte gx
+    char lowerByte2; // Lower byte phi
+    char upperByte2; // Upper byte phi
+    char lowerByte3; // Lower byte teta
+    char upperByte3; // Upper byte teta
+    char lowerByte4; // Lower byte psi
+    char upperByte4; // Upper byte psi
 
-		// Split short into two char
+    // Split short into two char
 
-		lowerByte1 = gx & 0xFF;
-		upperByte1 = gx >> 8;
+    lowerByte1 = gx & 0xFF;
+    upperByte1 = gx >> 8;
 
-		lowerByte2 = phi_int & 0xFF;
-		upperByte2 = phi_int >> 8;
+    lowerByte2 = phi_int & 0xFF;
+    upperByte2 = phi_int >> 8;
 
-		lowerByte3 = theta_int & 0xFF;
-		upperByte3 = theta_int >> 8;
+    lowerByte3 = theta_int & 0xFF;
+    upperByte3 = theta_int >> 8;
 
-		lowerByte4 = psi_int & 0xFF;
-		upperByte4 = psi_int >> 8;
+    lowerByte4 = psi_int & 0xFF;
+    upperByte4 = psi_int >> 8;
 
 
-		CAN_Message      txMsg;
-		txMsg.id = ID_MPU; //Card ID
+    CAN_Message      txMsg;
+    txMsg.id = ID_MPU; //Card ID
 
-		//Send gx
-		txMsg.data[0] = lowerByte1;//measure from sensor
-		txMsg.data[1] = upperByte1;
+    //Send gx
+    txMsg.data[0] = lowerByte1;//measure from sensor
+    txMsg.data[1] = upperByte1;
 
-		//Send angle for current instant through CAN
-		txMsg.data[2] = lowerByte2;
-		txMsg.data[3] = upperByte2;
+    //Send angle for current instant through CAN
+    txMsg.data[2] = lowerByte2;
+    txMsg.data[3] = upperByte2;
 
-		txMsg.data[4] = lowerByte3;
-		txMsg.data[5] = upperByte3;
+    txMsg.data[4] = lowerByte3;
+    txMsg.data[5] = upperByte3;
 
-		txMsg.data[6] = lowerByte4;
-		txMsg.data[7] = upperByte4;
+    txMsg.data[6] = lowerByte4;
+    txMsg.data[7] = upperByte4;
 
-		txMsg.len = 8;
-		txMsg.format = CANStandard;
-		txMsg.type = CANData;
+    txMsg.len = 8;
+    txMsg.format = CANStandard;
+    txMsg.type = CANData;
 
-		can_Write(txMsg);
+    can_Write(txMsg);
 
 
 		term_printf("Phi(Roll): %d Theta (Pitch): %d Psi (Yaw): %d \n\r", phi_int , theta_int, psi_int);
