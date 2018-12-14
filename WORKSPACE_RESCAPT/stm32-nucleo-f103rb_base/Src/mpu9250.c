@@ -21,7 +21,8 @@ static int32_t	accel_bias_int[3] = {0, 0, 0};
 static int32_t  gyro_bias_int[3] = {0, 0, 0};
 
 //Angles d'Euler (Roll, Pitch and Yaw)
- volatile float phi=0.0f, theta=0.0f, psi=0.0f;
+ float phi=0.0f, theta=0.0f, psi=0.0f;
+
 
 //================================================================
 //			INIT MPU9250
@@ -90,6 +91,7 @@ void mpu9250_Step(void)
 {
 		uint8_t Buf[14];
 
+
 		// ____________________________________
 		// :::  accelerometer and gyroscope :::
 
@@ -98,30 +100,26 @@ void mpu9250_Step(void)
 		// TEMP_OUT_H, TEMP_OUT_L, GYRO_XOUT_H, GYRO_XOUT_L, GYRO_YOUT_H, GYRO_YOUT_L, GYRO_ZOUT_H, GYRO_ZOUT_L
 		i2c1_ReadRegBuffer( MPU9250_ADDRESS,ACCEL_XOUT_H ,Buf,14);
 
-		// _______________________
-		// :::  accelerometer  :::
-
 		int16_t ax=-(Buf[0]<<8 | Buf[1]);
 		int16_t ay=-(Buf[2]<<8 | Buf[3]);
 		int16_t az=Buf[4]<<8 | Buf[5];
 
-
-		ax = ax+accel_bias_int[0];
-		ay = ay+accel_bias_int[1];
-		az = az-accel_bias_int[2];
+		ax=ax+accel_bias_int[0];
+		ay=ay+accel_bias_int[1];
+		az=az-accel_bias_int[2];
 
 		float axc = ax*ACC_MOD_CONST; //ACC_MOD_CONST = (4/32768)
-		float ayc = ax*ACC_MOD_CONST; //ACC_MOD_CONST = (4/32768)
-		float azc = ax*ACC_MOD_CONST; //ACC_MOD_CONST = (4/32768)
-
-
-		// ___________________
-		// :::  Gyroscope  :::
+		float ayc = ay*ACC_MOD_CONST; //ACC_MOD_CONST = (4/32768)
+		float azc = az*ACC_MOD_CONST; //ACC_MOD_CONST = (4/32768)
 
 		int16_t gx=-(Buf[8]<<8 | Buf[9]);
 		int16_t gy=-(Buf[10]<<8 | Buf[11]);
 		int16_t gz=Buf[12]<<8 | Buf[13];
 
+		gx = gx + gyro_bias_int[0];
+		gy = gy + gyro_bias_int[1];
+		gz = gz - gyro_bias_int[2];
+		
 		float gxc = gx*GYRO_MOD_CONST; //GYRO_MOD_CONST  = (1000.0/32768.0)*(PI/180.0)
 		float gyc = gy*GYRO_MOD_CONST; //GYRO_MOD_CONST  = (1000.0/32768.0)*(PI/180.0)
 		float gzc = gz*GYRO_MOD_CONST; //GYRO_MOD_CONST  = (1000.0/32768.0)*(PI/180.0)
@@ -136,9 +134,9 @@ void mpu9250_Step(void)
 		psi=(180.0/PI)*psi;
 		theta=(180.0/PI)*theta;
 
-		phi_int=(int)phi;
-		psi_int=(int)psi;
-		theta_int=(int)theta;
+		phi_int = (int16_t)phi;
+		psi_int = (int16_t)psi;
+		theta_int = (int16_t)theta;
 
 		// Split short into two char
 
@@ -177,9 +175,15 @@ void mpu9250_Step(void)
 		can_Write(txMsg);
 
 
-		term_printf("Phi(Roll): %d Theta (Pitch): %d Psi (Yaw): %d \n\r", phi_int , theta_int, psi_int);
+		term_printf("Phi(Roll): %d Theta (Pitch): %d Psi (Yaw): %d \n\r",phi_int , theta_int, psi_int);
 
-		//term_printf("%d %d %d \n\r", ax, ay, az);
+		/*Read valeurs de Acc et Gyr ReadData?
+		* executer function MadgwickAHRSupdateIMU pour trouver quaternions
+		* calculer matrix de rotation avec quaternions
+		* trouver angles d'euler
+		* importer angles pour faire le mouvement avec openGl
+		*/
+
 
 #if USE_MAGNETOMETER
 	   	//_____________________
@@ -197,9 +201,9 @@ void mpu9250_Step(void)
     	int16_t mx=-(Mag[3]<<8 | Mag[2]);
     	int16_t my=-(Mag[1]<<8 | Mag[0]);
     	int16_t mz=-(Mag[5]<<8 | Mag[4]);
-
+    	
 #endif
-
+		
   }
 //================================================================
 //			READ ACCELERATION
@@ -320,7 +324,7 @@ void mpu9250_CalibrateMPU9250()
 }
 
 void calc_matRot(float q0, float q1, float q2, float q3){
-	double R11, R12, R13, R21, R22, R23, R31, R32, R33;
+	float R11, R12, R13, R21, R22, R23, R31, R32, R33;
 
 	//Calcul de la Matrice de Rotation à Partir du Quaternion
 	R11 = pow(q0,2) + pow(q1,2) - pow(q2,2) - pow(q3,2);
@@ -341,3 +345,28 @@ void calc_matRot(float q0, float q1, float q2, float q3){
 }
 
 //=================================================================
+
+void sendToCAN(char *data, int dataSize, uint16_t id){
+
+	CAN_Message msg;
+
+	for(int i=0; i<dataSize; i++){
+		msg.data[i] = data[i];
+	}
+
+	msg.id = 0x55;
+	msg.len = dataSize;
+	msg.format = CANStandard;
+	msg.type = CANData;
+
+	can_Write(msg);
+}
+
+void intToChar(int toConvert, char *converted){
+
+	converted[0] = (char)((toConvert << 24) && 0xFF);
+	converted[1] = (char)((toConvert << 16) && 0XFF);
+	converted[2] = (char)((toConvert << 8) && 0XFF);
+	converted[3] = (char)((toConvert) && 0XFF);
+}
+

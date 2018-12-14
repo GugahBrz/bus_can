@@ -12,7 +12,6 @@
 #include "types.h"
 
 
-
 /**************************************************
  * 		REGISTER MAP MPU9250
  **************************************************/
@@ -193,9 +192,9 @@
 #define		BANDWITH_ACCEL_10_Hz	0x05
 #define		BANDWITH_ACCEL_5_Hz		0x06
 
-//=============================================================
+//==========================================================
 #define 	GYRO_FULL_SCALE			GYRO_FULL_SCALE_1000_DPS
-//=============================================================
+//==========================================================
 #define		ACC_FULL_SCALE			ACC_FULL_SCALE_4_G
 //==========================================================
 #define		PI			(3.14159265358979323846264338327950288419716939937510582)
@@ -204,8 +203,6 @@
 //==========================================================
 #define		GYRO_MOD_CONST			(1000.0/32768.0)*(PI/180.0)
 //==========================================================
-
-
 
 #if	GYRO_FULL_SCALE == GYRO_FULL_SCALE_250_DPS
 	#define		GYRO_RATIO			4
@@ -256,6 +253,9 @@ void mpu9250_ResetMPU9250();
 void mpu9250_InitAK8963(float *);
 void mpu9250_CalibrateMPU9250();
 void calc_matRot(float q0, float q1, float q2, float q3);
+void sendToCAN(char *data, int dataSize, uint16_t id);
+void intToChar(int toConvert, char *converted);
+
 
 
 #endif /* INC_MPU9250_H_ */

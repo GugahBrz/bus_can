@@ -1,6 +1,6 @@
 #include "main.h"
 //====================================================================
-#define VL6180X	0
+#define VL6180X	0  //Carte sensor de lumininosite
 #define MPU9250	1
 #define MPL115A_ANEMO 0
 //====================================================================
@@ -50,8 +50,6 @@ int main(void)
 
 	HAL_Delay(1000); // Wait
 
-	term_printf("hello \n\r");
-
 #if MPL115A_ANEMO
     spi1_Init();
     anemo_Timer1Init();
@@ -69,7 +67,7 @@ int main(void)
 #endif
     uint8_t response=0;
 	response =  mpu9250_WhoAmI();
-	term_printf("%d",response);
+	// term_printf("%d",response);
 #endif
 
 
@@ -95,20 +93,19 @@ int main(void)
 
     // Décommenter pour utiliser ce Timer ; permet de déclencher une interruption toutes les N ms
     // Le programme d'interruption est dans tickTimer.c
-    tickTimer_Init(100); // period in ms
+    tickTimer_Init(5); // period in ms
 
     while (1) {
 
-	#if VL6180X
-		VL6180x_Step();
-	#endif
+#if VL6180X
+    VL6180x_Step();
+#endif
 
-	#if MPU9250
-
-	#endif
+#if MPU9250
+    // Developper carte accelerometre
+#endif
 
     }
-
 	return 0;
 }
 
@@ -119,6 +116,7 @@ int main(void)
 
 void can_callback(void)
 {
+	//Interruption
 	CAN_Message msg_rcv;
 	int i=0;
 
@@ -141,8 +139,9 @@ void can_callback(void)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-	term_printf("from timer interrupt\n\r");
-	mpu9250_Step();
+	//term_printf("from timer interrupt\n\r");
+	 mpu9250_Step();
+
 }
 //====================================================================
 

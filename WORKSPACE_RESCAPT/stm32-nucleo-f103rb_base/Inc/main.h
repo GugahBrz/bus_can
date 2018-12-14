@@ -22,7 +22,7 @@
 #include "anemo.h"
 #include "mpu9250.h"
 
-#include "madgwickAHR.h"
+#include "MadgwickAHRS.h"
 
 #include "vl6180x_api.h"
 #include "vl6180x_lib.h"
