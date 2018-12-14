@@ -14,3 +14,5 @@ le fichier representant la sonde: /dev/pcanusb32
 > /local/qtcreator*/bin/qtcreator
 
 programme de base dans le projet qt en c++
+
+> Tacos > Kebab
