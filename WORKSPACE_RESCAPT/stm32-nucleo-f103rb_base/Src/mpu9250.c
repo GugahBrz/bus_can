@@ -175,7 +175,7 @@ void mpu9250_Step(void)
 		can_Write(txMsg);
 
 
-		term_printf("Phi(Roll): %d Theta (Pitch): %d Psi (Yaw): %d \n\r",phi_int , theta_int, psi_int);
+		//term_printf("Phi(Roll): %d Theta (Pitch): %d Psi (Yaw): %d \n\r",phi_int , theta_int, psi_int);
 
 		/*Read valeurs de Acc et Gyr ReadData?
 		* executer function MadgwickAHRSupdateIMU pour trouver quaternions

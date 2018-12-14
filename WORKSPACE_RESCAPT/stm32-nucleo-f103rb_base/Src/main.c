@@ -1,8 +1,8 @@
 #include "main.h"
 //====================================================================
 #define VL6180X	0  //Carte sensor de lumininosite
-#define MPU9250	1
-#define MPL115A_ANEMO 0
+#define MPU9250	0
+#define MPL115A_ANEMO 1
 //====================================================================
 //			CAN ACCEPTANCE FILTER
 //====================================================================
@@ -53,6 +53,17 @@ int main(void)
 #if MPL115A_ANEMO
     spi1_Init();
     anemo_Timer1Init();
+
+    // Carte anemometre//
+    int anemoMeasure = 0;
+
+    for (;;){
+    	anemoMeasure = anemo_GetCount();
+    	if (anemoMeasure){
+    		term_printf("Anemo: %d km/h \n\r", anemoMeasure );
+    	}
+    }
+
 #endif
 
 #if VL6180X
