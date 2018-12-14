@@ -41,9 +41,34 @@ int anemo_GetCount(void)
 	return TIM1->CNT;
 }
 //================================================================
-int anemo_ResetCount(void)
+void anemo_ResetCount(void)
 {
 	  TIM1->CNT=0;
+}
+//================================================================
+
+void anemo_Step(void)
+{
+	//term_printf("Anemo: %d Hz/km/h \n\r", anemo_GetCount());
+	anemoCount = anemo_GetCount();
+	anemo_ResetCount();
+
+	char lowerByte = anemoCount & 0xFF;
+	char upperByte = anemoCount >> 8;
+
+	CAN_Message      txMsg;
+
+	txMsg.id = 0x01; //Card ID
+
+	//Send vent vitesse
+	txMsg.data[0] = lowerByte;//measure from sensor
+	txMsg.data[1] = upperByte;
+
+	txMsg.len = 8;
+	txMsg.format = CANStandard;
+	txMsg.type = CANData;
+
+	can_Write(txMsg);
 }
 //================================================================
 

@@ -54,16 +54,6 @@ int main(void)
     spi1_Init();
     anemo_Timer1Init();
 
-    // Carte anemometre//
-    int anemoMeasure = 0;
-
-    for (;;){
-    	anemoMeasure = anemo_GetCount();
-    	if (anemoMeasure){
-    		term_printf("Anemo: %d km/h \n\r", anemoMeasure );
-    	}
-    }
-
 #endif
 
 #if VL6180X
@@ -104,7 +94,7 @@ int main(void)
 
     // Décommenter pour utiliser ce Timer ; permet de déclencher une interruption toutes les N ms
     // Le programme d'interruption est dans tickTimer.c
-    tickTimer_Init(5); // period in ms
+    tickTimer_Init(200); // period in ms
 
     while (1) {
 
@@ -151,7 +141,8 @@ void can_callback(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	//term_printf("from timer interrupt\n\r");
-	 mpu9250_Step();
+	anemo_Step();
+	//mpu9250_Step();
 
 }
 //====================================================================
