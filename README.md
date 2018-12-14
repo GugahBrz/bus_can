@@ -14,13 +14,3 @@ le fichier representant la sonde: /dev/pcanusb32
 > /local/qtcreator*/bin/qtcreator
 
 programme de base dans le projet qt en c++
-
-### git guide
-
-git add *
-
-git commit -m "MESSAGE"
-
-git push origin master
-
-git pull
