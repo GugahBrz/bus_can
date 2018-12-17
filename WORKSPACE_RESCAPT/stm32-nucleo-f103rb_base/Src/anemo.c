@@ -47,7 +47,7 @@ void anemo_ResetCount(void)
 }
 //================================================================
 
-void anemo_Step(void)
+void anemo_Step(uint16_t anemoCount)
 {
 	//term_printf("Anemo: %d Hz/km/h \n\r", anemo_GetCount());
 	anemoCount = anemo_GetCount();

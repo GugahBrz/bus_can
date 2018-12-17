@@ -4,12 +4,12 @@
 
 #include "main.h"
 
-uint16_t anemoCount;
+//uint16_t anemoCount;
 
 void anemo_Timer1Init(void);
 int anemo_GetCount(void);
 void anemo_ResetCount(void);
-void anemo_Step(void);
+void anemo_Step(uint16_t anemoCount);
 
 
 #endif /* INC_ANEMO_H_ */

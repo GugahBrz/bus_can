@@ -32,26 +32,26 @@ extern float magCalibration[3];
 #endif
 
 #if MPL115A_ANEMO
-#define PRESH   0x80
-#define PRESL   0x82
-#define TEMPH   0x84
-#define TEMPL   0x86
+	#define PRESH   0x80
+	#define PRESL   0x82
+	#define TEMPH   0x84
+	#define TEMPL   0x86
 
-#define A0MSB   0x88 //Read coefficient data byte 1 (pag 8 datasheet)
-#define A0LSB   0x8A
-#define B1MSB   0x8C
-#define B1LSB   0x8E
-#define B2MSB   0x90
-#define B2LSB   0x92
-#define C12MSB  0x94
-#define C12LSB  0x96
+	#define A0MSB   0x88 //Read coefficient data byte 1 (pag 8 datasheet)
+	#define A0LSB   0x8A
+	#define B1MSB   0x8C
+	#define B1LSB   0x8E
+	#define B2MSB   0x90
+	#define B2LSB   0x92
+	#define C12MSB  0x94
+	#define C12LSB  0x96
 
-float a0;
-float b1;
-float b2;
-float c12;
+	float a0;
+	float b1;
+	float b2;
+	float c12;
 
-int anemoCount;
+	uint16_t anemoCount;
 #endif
 
 int status;
@@ -79,7 +79,7 @@ int main(void)
 #if MPL115A_ANEMO
     spi1_Init();
     anemo_Timer1Init();
-		MPL115A_ANEMO_Init();
+	MPL115A_ANEMO_Init();
 
 #endif
 
@@ -94,7 +94,7 @@ int main(void)
     mpu9250_InitAK8963(magCalibration);
 #endif
     uint8_t response=0;
-		response =  mpu9250_WhoAmI();
+	response =  mpu9250_WhoAmI();
 	// term_printf("%d",response);
 #endif
 
@@ -131,17 +131,17 @@ int main(void)
 
     while (1) {
 
-			#if VL6180X
-			  VL6180x_Step();
-			#endif
+		#if VL6180X
+		  VL6180x_Step();
+		#endif
 
-			#if MPU9250
-			  // Developper carte accelerometre
-			#endif
+		#if MPU9250
+		  // Developper carte accelerometre
+		#endif
 
-			#if MPL115A_ANEMO
-				MPL11A_ANEMO_Step();
-			#endif
+		#if MPL115A_ANEMO
+		  MPL115A_ANEMO_Step();
+		#endif
     }
 	return 0;
 }
@@ -189,7 +189,7 @@ void can_callback(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	//term_printf("from timer interrupt\n\r");
-	anemo_Step();
+	anemo_Step(anemoCount);
 	//mpu9250_Step();
 
 }
@@ -393,10 +393,10 @@ void MPL115A_ANEMO_Step(void){
 	txMsg.type=CANData;
 	txMsg.len=8;
 
-	txMsg.data[0]= anemo_count & 0xFF;
-	txMsg.data[1]=(anemo_count>>8) & 0xFF;
-	txMsg.data[2]=(anemo_count>>16)  & 0xFF;
-	txMsg.data[3]=(anemo_count>>24)  & 0xFF;
+	txMsg.data[0]= anemoCount & 0xFF;
+	txMsg.data[1]=(anemoCount>>8) & 0xFF;
+	txMsg.data[2]=(anemoCount>>16)  & 0xFF;
+	txMsg.data[3]=(anemoCount>>24)  & 0xFF;
 	txMsg.data[4]= dec_preskPa;
 	txMsg.data[5]=(int)preskPa;
 	txMsg.data[6]=((int)preskPa>>8) ;
