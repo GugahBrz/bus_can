@@ -119,7 +119,7 @@ void mpu9250_Step(void)
 		gx = gx + gyro_bias_int[0];
 		gy = gy + gyro_bias_int[1];
 		gz = gz - gyro_bias_int[2];
-		
+
 		float gxc = gx*GYRO_MOD_CONST; //GYRO_MOD_CONST  = (1000.0/32768.0)*(PI/180.0)
 		float gyc = gy*GYRO_MOD_CONST; //GYRO_MOD_CONST  = (1000.0/32768.0)*(PI/180.0)
 		float gzc = gz*GYRO_MOD_CONST; //GYRO_MOD_CONST  = (1000.0/32768.0)*(PI/180.0)
@@ -201,9 +201,9 @@ void mpu9250_Step(void)
     	int16_t mx=-(Mag[3]<<8 | Mag[2]);
     	int16_t my=-(Mag[1]<<8 | Mag[0]);
     	int16_t mz=-(Mag[5]<<8 | Mag[4]);
-    	
+
 #endif
-		
+
   }
 //================================================================
 //			READ ACCELERATION
@@ -369,4 +369,3 @@ void intToChar(int toConvert, char *converted){
 	converted[2] = (char)((toConvert << 8) && 0XFF);
 	converted[3] = (char)((toConvert) && 0XFF);
 }
-
