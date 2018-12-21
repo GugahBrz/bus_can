@@ -72,7 +72,7 @@ private:
     Ui::MainWindow  *ui;
      QGridLayout     *m_layout,*graphics_layout;
      QPushButton     *but_send;
-     QRadioButton       *but_distance, *but_luminosite,*but_pression,*but_acc, *but_anemo;
+     QRadioButton    *but_distance, *but_luminosite,*but_pression,*but_acc, *but_anemo;
 
      QLineEdit       *receive_box_P_0,*receive_box_P_1,*receive_box_P_2,*receive_box_P_3 ;
      QLineEdit       *receive_box_P_4,*receive_box_P_5,*receive_box_P_6,*receive_box_P_7 ;
@@ -88,6 +88,8 @@ private:
 
      QLineEdit       *receive_box_G_0,*receive_box_G_1,*receive_box_G_2,*receive_box_G_3 ;
      QLineEdit       *receive_box_G_4,*receive_box_G_5,*receive_box_G_6,*receive_box_G_7 ;
+
+     QLineEdit       *receive_phi, *receive_psi, *receive_theta;
 
      QLineEdit       *send_box_0, *send_box_1,*send_box_2,*send_box_3;
      QLineEdit       *send_box_4, *send_box_5,*send_box_6,*send_box_7;

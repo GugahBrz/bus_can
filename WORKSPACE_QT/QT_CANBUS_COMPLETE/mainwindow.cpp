@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setCentralWidget(zoneCentrale);
     m_layout = new QGridLayout();
     graphics_layout = new QGridLayout();
-    m_layout->addLayout(graphics_layout,13,0,3,6);
+    m_layout->addLayout(graphics_layout,13,1,3,6);
 
     QGraphicsView *view = new QGraphicsView();
     scene = new Scene (0, 0, 80, 80,this);
@@ -86,6 +86,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     but_send = new QPushButton("Send Message");
+
 /*  but_distance = new QCheckBox();
     but_luminosite = new QCheckBox();
     but_pression = new QCheckBox();
@@ -129,6 +130,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QLabel *label_acelerometre = new QLabel;
     label_acelerometre->setText("MPU9250 Acelerometre");
+
+    //Mesures Capteur MPU9520
+    QLabel *phi_received = new QLabel;
+    phi_received->setText("Phi:");
+    QLabel *psi_received = new QLabel;
+    psi_received->setText("Psi:");
+    QLabel *theta_received = new QLabel;
+    theta_received->setText("Theta:");
 
     send_box_0 = new QLineEdit();
     send_box_1 = new QLineEdit();
@@ -196,6 +205,9 @@ MainWindow::MainWindow(QWidget *parent) :
     receive_box_G_5 = new QLineEdit();
     receive_box_G_6 = new QLineEdit();
     receive_box_G_7 = new QLineEdit();
+    receive_phi = new QLineEdit();
+    receive_psi = new QLineEdit();
+    receive_theta = new QLineEdit();
 
     m_layout->addWidget(label_to_send,0,0);
 
@@ -208,8 +220,6 @@ MainWindow::MainWindow(QWidget *parent) :
     m_layout->addWidget(send_box_2,1,6);
     m_layout->addWidget(send_box_1,1,7);
     m_layout->addWidget(send_box_0,1,8);
-
-
 
 
     m_layout->addWidget(label_received,3,0);
@@ -268,6 +278,9 @@ MainWindow::MainWindow(QWidget *parent) :
     m_layout->addWidget(carte3,10,0);
 
     m_layout->addWidget(label_acelerometre,11,0);
+    m_layout->addWidget(phi_received,12,1);
+    m_layout->addWidget(psi_received,12,3);
+    m_layout->addWidget(theta_received,12,5);
     m_layout->addWidget(receive_box_G_7,11,1);
     m_layout->addWidget(receive_box_G_6,11,2);
     m_layout->addWidget(receive_box_G_5,11,3);
@@ -276,6 +289,9 @@ MainWindow::MainWindow(QWidget *parent) :
     m_layout->addWidget(receive_box_G_2,11,6);
     m_layout->addWidget(receive_box_G_1,11,7);
     m_layout->addWidget(receive_box_G_0,11,8);
+    m_layout->addWidget(receive_phi,12,2);
+    m_layout->addWidget(receive_psi,12,4);
+    m_layout->addWidget(receive_theta,12,6);
     m_layout->addWidget(but_acc,11,9);
 
 
@@ -432,37 +448,37 @@ void MainWindow::receiveCANMessage()
             receive_box_V_1->setText(QString::number((uint)pMsgBuff.Msg.DATA[1]));
             receive_box_V_2->setText(QString::number((uint)pMsgBuff.Msg.DATA[2]));
             receive_box_V_3->setText(QString::number((uint)pMsgBuff.Msg.DATA[3]));
-            //receive_box_V_4->setText(QString::number((uint)pMsgBuff.Msg.DATA[4]));
-            //receive_box_V_5->setText(QString::number((uint)pMsgBuff.Msg.DATA[5]));
-            //receive_box_V_6->setText(QString::number((uint)pMsgBuff.Msg.DATA[6]));
-            //receive_box_V_7->setText(QString::number((uint)pMsgBuff.Msg.DATA[7]));
-            receive_box_V_4->setText("0");
-            receive_box_V_5->setText("0");
-            receive_box_V_6->setText("0");
-            receive_box_V_7->setText("0");
+            receive_box_V_4->setText(QString::number((uint)pMsgBuff.Msg.DATA[4]));
+            receive_box_V_5->setText(QString::number((uint)pMsgBuff.Msg.DATA[5]));
+            receive_box_V_6->setText(QString::number((uint)pMsgBuff.Msg.DATA[6]));
+            receive_box_V_7->setText(QString::number((uint)pMsgBuff.Msg.DATA[7]));
+            //receive_box_V_4->setText("0");
+            //receive_box_V_5->setText("0");
+            //receive_box_V_6->setText("0");
+            //receive_box_V_7->setText("0");
             dial->setValue((uint)pMsgBuff.Msg.DATA[0]);
             LCD_vit->display(QString::number((uint)pMsgBuff.Msg.DATA[0]));
 
-            debuger.display(pMsgBuff.Msg.DATA[7]);
+            //debuger.display(pMsgBuff.Msg.DATA[7]);
 
             //but_pression->setCheckState(Qt::Checked);
             but_pression->setChecked(true);
-            //receive_box_P_0->setText(QString::number((uint)pMsgBuff.Msg.DATA[0]));
-            //receive_box_P_1->setText(QString::number((uint)pMsgBuff.Msg.DATA[1]));
-            //receive_box_P_2->setText(QString::number((uint)pMsgBuff.Msg.DATA[2]));
-            //receive_box_P_3->setText(QString::number((uint)pMsgBuff.Msg.DATA[3]));
-            //receive_box_P_4->setText(QString::number((uint)pMsgBuff.Msg.DATA[4]));
-            //receive_box_P_5->setText(QString::number((uint)pMsgBuff.Msg.DATA[5]));
-            //receive_box_P_6->setText(QString::number((uint)pMsgBuff.Msg.DATA[6]));
-            //receive_box_P_7->setText(QString::number((uint)pMsgBuff.Msg.DATA[7]));
-            receive_box_P_0->setText(QString::number((uint)pMsgBuff.Msg.DATA[4]));
-            receive_box_P_1->setText(QString::number((uint)pMsgBuff.Msg.DATA[5]));
-            receive_box_P_2->setText(QString::number((uint)pMsgBuff.Msg.DATA[6]));
-            receive_box_P_3->setText(QString::number((uint)pMsgBuff.Msg.DATA[7]));
-            receive_box_P_4->setText("0");
-            receive_box_P_5->setText("0");
-            receive_box_P_6->setText("0");
-            receive_box_P_7->setText("0");
+            receive_box_P_0->setText(QString::number((uint)pMsgBuff.Msg.DATA[0]));
+            receive_box_P_1->setText(QString::number((uint)pMsgBuff.Msg.DATA[1]));
+            receive_box_P_2->setText(QString::number((uint)pMsgBuff.Msg.DATA[2]));
+            receive_box_P_3->setText(QString::number((uint)pMsgBuff.Msg.DATA[3]));
+            receive_box_P_4->setText(QString::number((uint)pMsgBuff.Msg.DATA[4]));
+            receive_box_P_5->setText(QString::number((uint)pMsgBuff.Msg.DATA[5]));
+            receive_box_P_6->setText(QString::number((uint)pMsgBuff.Msg.DATA[6]));
+            receive_box_P_7->setText(QString::number((uint)pMsgBuff.Msg.DATA[7]));
+            //receive_box_P_0->setText(QString::number((uint)pMsgBuff.Msg.DATA[4]));
+            //receive_box_P_1->setText(QString::number((uint)pMsgBuff.Msg.DATA[5]));
+            //receive_box_P_2->setText(QString::number((uint)pMsgBuff.Msg.DATA[6]));
+            //receive_box_P_3->setText(QString::number((uint)pMsgBuff.Msg.DATA[7]));
+            //receive_box_P_4->setText("0");
+            //receive_box_P_5->setText("0");
+            //receive_box_P_6->setText("0");
+            //receive_box_P_7->setText("0");
 
             qreal pression = (uint)pMsgBuff.Msg.DATA[5] + (float)((uint)pMsgBuff.Msg.DATA[4] / 100 );
             qreal percent = 100-(100 * (pressionBar->maximum()-pression) / (pressionBar->maximum()-pressionBar->minimum()) );
@@ -479,9 +495,6 @@ void MainWindow::receiveCANMessage()
         case 2:{
             switch(capt){
                 case 'D':{
-                //but_distance->setCheckState(Qt::Checked);
-                //but_luminosite->setCheckable(true);
-                //but_luminosite->setCheckState(Qt::Unchecked);
                 but_distance->setChecked(true);
                 but_luminosite->setCheckable(true);
                 but_luminosite->setChecked(false);
@@ -499,9 +512,6 @@ void MainWindow::receiveCANMessage()
                 break;
                 }
                 case 'L':{
-                //but_distance->setCheckable(true);
-                //but_distance->setCheckState(Qt::Unchecked);
-                //but_luminosite->setCheckState(Qt::Checked);
                 but_distance->setCheckable(true);
                 but_distance->setChecked(false);
                 but_luminosite->setChecked(true);
@@ -522,7 +532,6 @@ void MainWindow::receiveCANMessage()
             break;
         }
         case 17:{
-            //but_acc->setCheckState(Qt::Checked);
             but_acc->setCheckable(true);
             receive_box_G_0->setText(QString::number((uint)pMsgBuff.Msg.DATA[0]));
             receive_box_G_1->setText(QString::number((uint)pMsgBuff.Msg.DATA[1]));
@@ -532,6 +541,15 @@ void MainWindow::receiveCANMessage()
             receive_box_G_5->setText(QString::number((uint)pMsgBuff.Msg.DATA[5]));
             receive_box_G_6->setText(QString::number((uint)pMsgBuff.Msg.DATA[6]));
             receive_box_G_7->setText(QString::number((uint)pMsgBuff.Msg.DATA[7]));
+
+            short Phi = ((short)pMsgBuff.Msg.DATA[3] << 8) | (short)pMsgBuff.Msg.DATA[2];
+            short Theta = ((short)pMsgBuff.Msg.DATA[5] << 8) | (short)pMsgBuff.Msg.DATA[4] ;
+            short Psi = ((short)pMsgBuff.Msg.DATA[7] << 8) | (short)pMsgBuff.Msg.DATA[6];
+
+            receive_phi->setText(QString::number(Phi));
+            receive_psi->setText(QString::number(Psi));
+            receive_theta->setText(QString::number(Theta));
+
             break;
         }
     }

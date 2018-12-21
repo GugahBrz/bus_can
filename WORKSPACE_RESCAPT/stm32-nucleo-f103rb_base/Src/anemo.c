@@ -47,16 +47,16 @@ void anemo_ResetCount(void)
 }
 //================================================================
 
-void anemo_Step(uint16_t anemoCount)
+void anemo_Step()
 {
 	//term_printf("Anemo: %d Hz/km/h \n\r", anemo_GetCount());
 	anemoCount = anemo_GetCount();
 	anemo_ResetCount();
 
-	char lowerByte = anemoCount & 0xFF;
-	char upperByte = anemoCount >> 8;
+	//char lowerByte = anemoCount & 0xFF;
+	//char upperByte = anemoCount >> 8;
 
-	CAN_Message      txMsg;
+	/*CAN_Message      txMsg;
 
 	txMsg.id = 0x01; //Card ID
 
@@ -68,7 +68,7 @@ void anemo_Step(uint16_t anemoCount)
 	txMsg.format = CANStandard;
 	txMsg.type = CANData;
 
-	can_Write(txMsg);
+	can_Write(txMsg);*/
 }
 //================================================================
 

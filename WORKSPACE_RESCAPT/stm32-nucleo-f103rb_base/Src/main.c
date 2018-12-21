@@ -1,8 +1,8 @@
 #include "main.h"
 //====================================================================
-#define VL6180X	0  //Carte sensor de lumininosite
-#define MPU9250	0
-#define MPL115A_ANEMO 1
+#define VL6180X	0 //Carte sensor de lumininosite
+#define MPU9250	1
+#define MPL115A_ANEMO 0
 //====================================================================
 //			CAN ACCEPTANCE FILTER
 //====================================================================
@@ -51,7 +51,7 @@ extern float magCalibration[3];
 	float b2;
 	float c12;
 
-	uint16_t anemoCount;
+	//volatile uint16_t anemoCount;
 #endif
 
 int status;
@@ -189,8 +189,13 @@ void can_callback(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	//term_printf("from timer interrupt\n\r");
-	anemo_Step(anemoCount);
-	//mpu9250_Step();
+	#if MPL115A_ANEMO
+		anemo_Step();
+	#endif
+	
+	#if MPU9250
+		mpu9250_Step();
+	#endif
 
 }
 //====================================================================
@@ -211,7 +216,7 @@ void VL6180x_Init(void)
     HAL_Delay(10);
     VL6180x_WaitDeviceBooted(theVL6180xDev);
     id=VL6180x_Identification(theVL6180xDev);
-    term_printf("id=%d, should be 180 (0xB4) \n\r", id);
+    //term_printf("id=%d, should be 180 (0xB4) \n\r", id);
     VL6180x_InitData(theVL6180xDev);
 
     State.InitScale=VL6180x_UpscaleGetScaling(theVL6180xDev);

@@ -535,3 +535,333 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp
 
 !ENTRY org.eclipse.core.resources 2 10035 2018-12-17 12:25:22.034
 !MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+!SESSION 2018-12-21 09:51:50.060 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.8.0_161
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=fr_FR
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.cdt.debug.mi.core 4 42 2018-12-21 09:59:55.196
+!MESSAGE Internal Error
+!STACK 0
+org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: Inferior terminated[]
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.getMIShareds(SharedLibraryManager.java:123)
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.updateState(SharedLibraryManager.java:189)
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.update(SharedLibraryManager.java:137)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.processSuspendedEvent(EventManager.java:329)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.update(EventManager.java:101)
+	at java.util.Observable.notifyObservers(Observable.java:159)
+	at org.eclipse.cdt.debug.mi.core.MISession.notifyObservers(MISession.java:797)
+	at org.eclipse.cdt.debug.mi.core.EventThread.run(EventThread.java:47)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:00:18.274
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Remote communication error.  Target disconnected.: Connexion r\303\251-initialis\303\251e par le correspondant.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:195)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:00:18.274
+!MESSAGE Remote communication error.  Target disconnected.: Connexion r\303\251-initialis\303\251e par le correspondant.
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Remote communication error.  Target disconnected.: Connexion r\303\251-initialis\303\251e par le correspondant.
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:195)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:00:18.276
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: You can't do that when your target is `None'
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:00:18.276
+!MESSAGE You can't do that when your target is `None'
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: You can't do that when your target is `None'
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:03:31.168
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Error erasing flash with vFlashErase packet
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:03:31.168
+!MESSAGE Error erasing flash with vFlashErase packet
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Error erasing flash with vFlashErase packet
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:04:15.646
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Error erasing flash with vFlashErase packet
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:04:15.646
+!MESSAGE Error erasing flash with vFlashErase packet
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Error erasing flash with vFlashErase packet
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.cdt.debug.mi.core 4 42 2018-12-21 10:07:00.080
+!MESSAGE Internal Error
+!STACK 0
+org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: Inferior terminated[]
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.getMIShareds(SharedLibraryManager.java:123)
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.updateState(SharedLibraryManager.java:189)
+	at org.eclipse.cdt.debug.mi.core.cdi.SharedLibraryManager.update(SharedLibraryManager.java:137)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.processSuspendedEvent(EventManager.java:329)
+	at org.eclipse.cdt.debug.mi.core.cdi.EventManager.update(EventManager.java:101)
+	at java.util.Observable.notifyObservers(Observable.java:159)
+	at org.eclipse.cdt.debug.mi.core.MISession.notifyObservers(MISession.java:797)
+	at org.eclipse.cdt.debug.mi.core.EventThread.run(EventThread.java:47)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:07:48.117
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Error erasing flash with vFlashErase packet
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:07:48.117
+!MESSAGE Error erasing flash with vFlashErase packet
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Error erasing flash with vFlashErase packet
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:15:25.300
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Error erasing flash with vFlashErase packet
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:15:25.300
+!MESSAGE Error erasing flash with vFlashErase packet
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Error erasing flash with vFlashErase packet
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:59:40.007
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Remote connection closed
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:195)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:59:40.008
+!MESSAGE Remote connection closed
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Remote connection closed
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:195)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:59:40.011
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: You can't do that when your target is `None'
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 10:59:40.011
+!MESSAGE You can't do that when your target is `None'
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: You can't do that when your target is `None'
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 11:05:05.735
+!MESSAGE Failed command
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Error erasing flash with vFlashErase packet
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.cdt.debug.gdbjtag.core 4 150 2018-12-21 11:05:05.735
+!MESSAGE Error erasing flash with vFlashErase packet
+!STACK 0
+org.eclipse.cdt.debug.mi.core.MIException: Error erasing flash with vFlashErase packet
+	at org.eclipse.cdt.debug.mi.core.command.Command.throwMIException(Command.java:105)
+	at org.eclipse.cdt.debug.mi.core.command.Command.getMIInfo(Command.java:79)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.executeGDBScript(GDBJtagDebugger.java:355)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.doStartSession(GDBJtagDebugger.java:262)
+	at org.eclipse.cdt.debug.mi.core.AbstractGDBCDIDebugger.createSession(AbstractGDBCDIDebugger.java:86)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagDebugger.createSession(GDBJtagDebugger.java:69)
+	at org.eclipse.cdt.debug.gdbjtag.core.GDBJtagLaunchConfigurationDelegate.launch(GDBJtagLaunchConfigurationDelegate.java:54)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:885)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:739)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1039)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1256)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
