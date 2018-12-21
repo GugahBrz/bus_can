@@ -438,8 +438,7 @@ void MainWindow::receiveCANMessage()
 {
     LINUX_CAN_Read_Timeout(h, &pMsgBuff,1); // Timeout=1ms --> Non Bloquant
     int ID = pMsgBuff.Msg.ID;
-    qDebug() << "recivido";
-    char capt = pMsgBuff.Msg.DATA[7];
+    char capt = pMsgBuff.Msg.DATA[0];
     switch(ID){
         case 1:{
             //but_anemo->setCheckState(Qt::Checked);
@@ -493,8 +492,8 @@ void MainWindow::receiveCANMessage()
             break;
         }
         case 2:{
-            switch(capt){
-                case 'D':{
+            //switch(capt){
+                //case 'D':{
                 but_distance->setChecked(true);
                 but_luminosite->setCheckable(true);
                 but_luminosite->setChecked(false);
@@ -503,15 +502,18 @@ void MainWindow::receiveCANMessage()
                 receive_box_D_2->setText(QString::number((uint)pMsgBuff.Msg.DATA[2]));
                 receive_box_D_3->setText(QString::number((uint)pMsgBuff.Msg.DATA[3]));
                 receive_box_D_4->setText(QString::number((uint)pMsgBuff.Msg.DATA[4]));
-                receive_box_D_5->setText(QString::number((uint)pMsgBuff.Msg.DATA[5]));
-                receive_box_D_6->setText(QString::number((uint)pMsgBuff.Msg.DATA[6]));
-                receive_box_D_7->setText(QString::number((uint)pMsgBuff.Msg.DATA[7]));
-                int result= pMsgBuff.Msg.DATA[1]<<8 | pMsgBuff.Msg.DATA[0];
+                //receive_box_D_5->setText(QString::number((uint)pMsgBuff.Msg.DATA[5]));
+                //receive_box_D_6->setText(QString::number((uint)pMsgBuff.Msg.DATA[6]));
+                //receive_box_D_7->setText(QString::number((uint)pMsgBuff.Msg.DATA[7]));
+                receive_box_D_5->setText("0");
+                receive_box_D_6->setText("0");
+                receive_box_D_7->setText("0");
+                int result= (pMsgBuff.Msg.DATA[4]<<24 | pMsgBuff.Msg.DATA[3]<<16 | pMsgBuff.Msg.DATA[2]<<8 | pMsgBuff.Msg.DATA[1]);//pMsgBuff.Msg.DATA[1]<<8 | pMsgBuff.Msg.DATA[0];
                 LCD_dist->display(result);
                 slider_range->setValue(result);
-                break;
-                }
-                case 'L':{
+               // break;
+               // }
+                //case 'L':{
                 but_distance->setCheckable(true);
                 but_distance->setChecked(false);
                 but_luminosite->setChecked(true);
@@ -520,15 +522,18 @@ void MainWindow::receiveCANMessage()
                 receive_box_L_2->setText(QString::number((uint)pMsgBuff.Msg.DATA[2]));
                 receive_box_L_3->setText(QString::number((uint)pMsgBuff.Msg.DATA[3]));
                 receive_box_L_4->setText(QString::number((uint)pMsgBuff.Msg.DATA[4]));
-                receive_box_L_5->setText(QString::number((uint)pMsgBuff.Msg.DATA[5]));
-                receive_box_L_6->setText(QString::number((uint)pMsgBuff.Msg.DATA[6]));
-                receive_box_L_7->setText(QString::number((uint)pMsgBuff.Msg.DATA[7]));
+                //receive_box_L_5->setText(QString::number((uint)pMsgBuff.Msg.DATA[5]));
+                //receive_box_L_6->setText(QString::number((uint)pMsgBuff.Msg.DATA[6]));
+                //receive_box_L_7->setText(QString::number((uint)pMsgBuff.Msg.DATA[7]));
+                receive_box_L_5->setText("0");
+                receive_box_L_6->setText("0");
+                receive_box_L_7->setText("0");
                 scene->actualiser(pMsgBuff.Msg.DATA[1],pMsgBuff.Msg.DATA[0]);
-                int result = (pMsgBuff.Msg.DATA[1]<<8) + pMsgBuff.Msg.DATA[0];
-                LCD_lum->display(result);
-                break;
-                }
-            }
+                int result1 = (pMsgBuff.Msg.DATA[4]<<24 | pMsgBuff.Msg.DATA[3]<<16 | pMsgBuff.Msg.DATA[2]<<8 | pMsgBuff.Msg.DATA[1]);//(pMsgBuff.Msg.DATA[1]<<8) + pMsgBuff.Msg.DATA[0];
+                LCD_lum->display(result1);
+                //break;
+                //}
+            //}
             break;
         }
         case 17:{

@@ -2748,3 +2748,468 @@ make: Rien à faire pour « all ».
 11:23:21 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
 make all 
 make: Rien à faire pour « all ».
+11:47:55 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Rien à faire pour « all ».
+11:54:15 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O4 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/MadgwickAHRS.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'VL6180x_Init':
+Src/main.c:205:10: warning: variable 'id' set but not used [-Wunused-but-set-variable]
+  uint8_t id;
+          ^
+Src/main.c: In function 'VL6180x_Step':
+Src/main.c:237:3: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+   if (new_switch_state = switch_state) {
+   ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_api.c: In function 'VL6180x_RangeIgnoreSetEnable':
+Src/vl6180x/vl6180x_api.c:1598:9: warning: 'status' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  return status;
+         ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/MadgwickAHRS.c:38:23: warning: 'q0' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                       ^
+Src/MadgwickAHRS.c:38:34: warning: 'q1' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                  ^
+Src/MadgwickAHRS.c:38:45: warning: 'q2' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                             ^
+Src/MadgwickAHRS.c:38:56: warning: 'q3' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                                        ^
+Src/MadgwickAHRS.c: In function 'invSqrt':
+Src/MadgwickAHRS.c:225:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     long i = *(long*)&y;
+     ^
+Src/MadgwickAHRS.c:227:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     y = *(float*)&i;
+     ^
+Src/drv_i2c.c: In function 'i2c1_WriteReg16Word32':
+Src/drv_i2c.c:144:11: warning: array subscript is above array bounds [-Warray-bounds]
+     buffer[4]=(data>>8)&0xFF;;
+           ^
+Src/drv_i2c.c:145:11: warning: array subscript is above array bounds [-Warray-bounds]
+     buffer[5]=data&0xFF;
+           ^
+Src/mpu9250.c: In function 'calc_matRot':
+Src/mpu9250.c:327:33: warning: variable 'R23' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                                 ^
+Src/mpu9250.c:327:23: warning: variable 'R21' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                       ^
+Src/mpu9250.c:327:18: warning: variable 'R13' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                  ^
+Src/mpu9250.c:327:8: warning: variable 'R11' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+        ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+11:58:21 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O4 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/MadgwickAHRS.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'VL6180x_Init':
+Src/main.c:206:10: warning: variable 'id' set but not used [-Wunused-but-set-variable]
+  uint8_t id;
+          ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_api.c: In function 'VL6180x_RangeIgnoreSetEnable':
+Src/vl6180x/vl6180x_api.c:1598:9: warning: 'status' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  return status;
+         ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/MadgwickAHRS.c:38:23: warning: 'q0' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                       ^
+Src/MadgwickAHRS.c:38:34: warning: 'q1' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                  ^
+Src/MadgwickAHRS.c:38:45: warning: 'q2' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                             ^
+Src/MadgwickAHRS.c:38:56: warning: 'q3' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                                        ^
+Src/MadgwickAHRS.c: In function 'invSqrt':
+Src/MadgwickAHRS.c:225:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     long i = *(long*)&y;
+     ^
+Src/MadgwickAHRS.c:227:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     y = *(float*)&i;
+     ^
+Src/drv_i2c.c: In function 'i2c1_WriteReg16Word32':
+Src/drv_i2c.c:144:11: warning: array subscript is above array bounds [-Warray-bounds]
+     buffer[4]=(data>>8)&0xFF;;
+           ^
+Src/drv_i2c.c:145:11: warning: array subscript is above array bounds [-Warray-bounds]
+     buffer[5]=data&0xFF;
+           ^
+Src/mpu9250.c: In function 'calc_matRot':
+Src/mpu9250.c:327:33: warning: variable 'R23' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                                 ^
+Src/mpu9250.c:327:23: warning: variable 'R21' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                       ^
+Src/mpu9250.c:327:18: warning: variable 'R13' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                  ^
+Src/mpu9250.c:327:8: warning: variable 'R11' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+        ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+11:59:43 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Rien à faire pour « all ».
+12:17:28 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Rien à faire pour « all ».
+12:18:27 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Rien à faire pour « all ».
+12:25:50 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Rien à faire pour « all ».
+12:26:45 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+make: Rien à faire pour « all ».
+12:27:49 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O4 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/MadgwickAHRS.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'main':
+Src/main.c:82:2: warning: implicit declaration of function 'MPL115A_ANEMO_Init' [-Wimplicit-function-declaration]
+  MPL115A_ANEMO_Init();
+  ^
+Src/main.c:144:5: warning: implicit declaration of function 'MPL115A_ANEMO_Step' [-Wimplicit-function-declaration]
+     MPL115A_ANEMO_Step();
+     ^
+Src/main.c:97:13: warning: variable 'response' set but not used [-Wunused-but-set-variable]
+     uint8_t response=0;
+             ^
+Src/main.c: In function 'VL6180x_Init':
+Src/main.c:206:10: warning: variable 'id' set but not used [-Wunused-but-set-variable]
+  uint8_t id;
+          ^
+Src/main.c: At top level:
+Src/main.c:331:6: warning: conflicting types for 'MPL115A_ANEMO_Init'
+ void MPL115A_ANEMO_Init(void){
+      ^
+Src/main.c:82:2: note: previous implicit declaration of 'MPL115A_ANEMO_Init' was here
+  MPL115A_ANEMO_Init();
+  ^
+Src/main.c:365:6: warning: conflicting types for 'MPL115A_ANEMO_Step'
+ void MPL115A_ANEMO_Step(void){
+      ^
+Src/main.c:144:5: note: previous implicit declaration of 'MPL115A_ANEMO_Step' was here
+     MPL115A_ANEMO_Step();
+     ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_api.c: In function 'VL6180x_RangeIgnoreSetEnable':
+Src/vl6180x/vl6180x_api.c:1598:9: warning: 'status' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  return status;
+         ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/MadgwickAHRS.c:38:23: warning: 'q0' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                       ^
+Src/MadgwickAHRS.c:38:34: warning: 'q1' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                  ^
+Src/MadgwickAHRS.c:38:45: warning: 'q2' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                             ^
+Src/MadgwickAHRS.c:38:56: warning: 'q3' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                                        ^
+Src/MadgwickAHRS.c: In function 'invSqrt':
+Src/MadgwickAHRS.c:225:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     long i = *(long*)&y;
+     ^
+Src/MadgwickAHRS.c:227:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     y = *(float*)&i;
+     ^
+Src/drv_i2c.c: In function 'i2c1_WriteReg16Word32':
+Src/drv_i2c.c:144:11: warning: array subscript is above array bounds [-Warray-bounds]
+     buffer[4]=(data>>8)&0xFF;;
+           ^
+Src/drv_i2c.c:145:11: warning: array subscript is above array bounds [-Warray-bounds]
+     buffer[5]=data&0xFF;
+           ^
+Src/mpu9250.c: In function 'calc_matRot':
+Src/mpu9250.c:327:33: warning: variable 'R23' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                                 ^
+Src/mpu9250.c:327:23: warning: variable 'R21' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                       ^
+Src/mpu9250.c:327:18: warning: variable 'R13' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                  ^
+Src/mpu9250.c:327:8: warning: variable 'R11' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+        ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+12:31:44 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O4 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/MadgwickAHRS.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'VL6180x_Init':
+Src/main.c:206:10: warning: variable 'id' set but not used [-Wunused-but-set-variable]
+  uint8_t id;
+          ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_api.c: In function 'VL6180x_RangeIgnoreSetEnable':
+Src/vl6180x/vl6180x_api.c:1598:9: warning: 'status' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  return status;
+         ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/MadgwickAHRS.c:38:23: warning: 'q0' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                       ^
+Src/MadgwickAHRS.c:38:34: warning: 'q1' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                  ^
+Src/MadgwickAHRS.c:38:45: warning: 'q2' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                             ^
+Src/MadgwickAHRS.c:38:56: warning: 'q3' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                                        ^
+Src/MadgwickAHRS.c: In function 'invSqrt':
+Src/MadgwickAHRS.c:225:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     long i = *(long*)&y;
+     ^
+Src/MadgwickAHRS.c:227:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     y = *(float*)&i;
+     ^
+Src/drv_i2c.c: In function 'i2c1_WriteReg16Word32':
+Src/drv_i2c.c:144:11: warning: array subscript is above array bounds [-Warray-bounds]
+     buffer[4]=(data>>8)&0xFF;;
+           ^
+Src/drv_i2c.c:145:11: warning: array subscript is above array bounds [-Warray-bounds]
+     buffer[5]=data&0xFF;
+           ^
+Src/mpu9250.c: In function 'calc_matRot':
+Src/mpu9250.c:327:33: warning: variable 'R23' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                                 ^
+Src/mpu9250.c:327:23: warning: variable 'R21' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                       ^
+Src/mpu9250.c:327:18: warning: variable 'R13' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                  ^
+Src/mpu9250.c:327:8: warning: variable 'R11' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+        ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+12:32:28 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O4 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/MadgwickAHRS.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'main':
+Src/main.c:97:13: warning: variable 'response' set but not used [-Wunused-but-set-variable]
+     uint8_t response=0;
+             ^
+Src/main.c: In function 'VL6180x_Init':
+Src/main.c:206:10: warning: variable 'id' set but not used [-Wunused-but-set-variable]
+  uint8_t id;
+          ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_api.c: In function 'VL6180x_RangeIgnoreSetEnable':
+Src/vl6180x/vl6180x_api.c:1598:9: warning: 'status' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  return status;
+         ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/MadgwickAHRS.c:38:23: warning: 'q0' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                       ^
+Src/MadgwickAHRS.c:38:34: warning: 'q1' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                  ^
+Src/MadgwickAHRS.c:38:45: warning: 'q2' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                             ^
+Src/MadgwickAHRS.c:38:56: warning: 'q3' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                                        ^
+Src/MadgwickAHRS.c: In function 'invSqrt':
+Src/MadgwickAHRS.c:225:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     long i = *(long*)&y;
+     ^
+Src/MadgwickAHRS.c:227:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     y = *(float*)&i;
+     ^
+Src/drv_i2c.c: In function 'i2c1_WriteReg16Word32':
+Src/drv_i2c.c:144:11: warning: array subscript is above array bounds [-Warray-bounds]
+     buffer[4]=(data>>8)&0xFF;;
+           ^
+Src/drv_i2c.c:145:11: warning: array subscript is above array bounds [-Warray-bounds]
+     buffer[5]=data&0xFF;
+           ^
+Src/mpu9250.c: In function 'calc_matRot':
+Src/mpu9250.c:327:33: warning: variable 'R23' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                                 ^
+Src/mpu9250.c:327:23: warning: variable 'R21' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                       ^
+Src/mpu9250.c:327:18: warning: variable 'R13' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                  ^
+Src/mpu9250.c:327:8: warning: variable 'R11' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+        ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin
+12:33:13 **** Incremental Build of configuration Default for project stm32-nucleo-f103rb_base ****
+make all 
+arm-none-eabi-gcc -IInc/ -IDrivers/STM32F1xx_HAL_Driver/Inc/ -ISrc/vl6180x/ -IDrivers/BSP/STM32F1xx_Nucleo/ -IDrivers/CMSIS/Device/ST/STM32F1xx/Include/ -IDrivers/CMSIS/Include/ -DSTM32F103xBt -ggdb -O4 -mlittle-endian --specs=rdimon.specs -mthumb -mcpu=cortex-m3 -mthumb-interwork -Wl,--gc-sections -lgcc -lc -lm -lrdimon -Wall -Wextra -Warray-bounds -Wno-unused-parameter -TDevice/gcc.ld Src/main.c Device/startup_stm32f103xb.s Src/vl6180x/vl6180x_api.c Src/vl6180x/vl6180x_lib.c Src/vl6180x/x-nucleo-6180xa1.c Src/stm32f1xx_hal_msp.c Src/stm32f1xx_it.c Src/system_stm32f1xx.c Src/systemClock.c Src/MadgwickAHRS.c Src/drv_can.c Src/drv_spi.c Src/drv_uart.c Src/drv_i2c.c Src/anemo.c Src/mpu9250.c Src/tickTimer.c stm32f1xx_hal.o stm32f1xx_hal_rcc.o stm32f1xx_hal_rcc_ex.o stm32f1xx_hal_rtc.o stm32f1xx_hal_gpio.o stm32f1xx_hal_cortex.o stm32f1xx_hal_pcd.o stm32f1xx_hal_pcd_ex.o stm32f1xx_hal_uart.o stm32f1xx_hal_usart.o stm32f1xx_hal_dma.o stm32f1xx_hal_adc.o stm32f1xx_hal_adc_ex.o stm32f1xx_hal_spi.o stm32f1xx_hal_i2c.o stm32f1xx_hal_tim.o stm32f1xx_hal_tim_ex.o stm32f1xx_hal_can.o Drivers/BSP/STM32F1xx_Nucleo/stm32f1xx_nucleo.o -o template.elf
+Src/main.c: In function 'main':
+Src/main.c:82:2: warning: implicit declaration of function 'MPL115A_ANEMO_Init' [-Wimplicit-function-declaration]
+  MPL115A_ANEMO_Init();
+  ^
+Src/main.c:144:5: warning: implicit declaration of function 'MPL115A_ANEMO_Step' [-Wimplicit-function-declaration]
+     MPL115A_ANEMO_Step();
+     ^
+Src/main.c: In function 'VL6180x_Init':
+Src/main.c:206:10: warning: variable 'id' set but not used [-Wunused-but-set-variable]
+  uint8_t id;
+          ^
+Src/main.c: At top level:
+Src/main.c:331:6: warning: conflicting types for 'MPL115A_ANEMO_Init'
+ void MPL115A_ANEMO_Init(void){
+      ^
+Src/main.c:82:2: note: previous implicit declaration of 'MPL115A_ANEMO_Init' was here
+  MPL115A_ANEMO_Init();
+  ^
+Src/main.c:365:6: warning: conflicting types for 'MPL115A_ANEMO_Step'
+ void MPL115A_ANEMO_Step(void){
+      ^
+Src/main.c:144:5: note: previous implicit declaration of 'MPL115A_ANEMO_Step' was here
+     MPL115A_ANEMO_Step();
+     ^
+Src/vl6180x/vl6180x_api.c: In function '_DMax_Compute':
+Src/vl6180x/vl6180x_api.c:2574:18: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (rtnAmbRate  < rtnAmbLowLimit_KCps) {
+                  ^
+Src/vl6180x/vl6180x_api.c: In function 'VL6180x_RangeIgnoreSetEnable':
+Src/vl6180x/vl6180x_api.c:1598:9: warning: 'status' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  return status;
+         ^
+Src/vl6180x/vl6180x_lib.c: In function 'RangeState':
+Src/vl6180x/vl6180x_lib.c:439:41: warning: comparison of unsigned expression >= 0 is always true [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                         ^
+Src/vl6180x/vl6180x_lib.c:439:89: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if (g_TickCnt - TimeStarted >= ErrRangeDispTime &&  g_TickCnt - TimeStarted <  ErrRangeDispTime + DMaxDispTime ){
+                                                                                         ^
+Src/vl6180x/vl6180x_lib.c:446:40: warning: comparison of unsigned expression < 0 is always false [-Wtype-limits]
+             if(g_TickCnt - TimeStarted < ErrRangeDispTime  )
+                                        ^
+Src/MadgwickAHRS.c:38:23: warning: 'q0' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                       ^
+Src/MadgwickAHRS.c:38:34: warning: 'q1' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                  ^
+Src/MadgwickAHRS.c:38:45: warning: 'q2' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                             ^
+Src/MadgwickAHRS.c:38:56: warning: 'q3' initialized and declared 'extern'
+ extern volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;  // quaternion of sensor frame relative to auxiliary frame
+                                                        ^
+Src/MadgwickAHRS.c: In function 'invSqrt':
+Src/MadgwickAHRS.c:225:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     long i = *(long*)&y;
+     ^
+Src/MadgwickAHRS.c:227:5: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]
+     y = *(float*)&i;
+     ^
+Src/drv_i2c.c: In function 'i2c1_WriteReg16Word32':
+Src/drv_i2c.c:144:11: warning: array subscript is above array bounds [-Warray-bounds]
+     buffer[4]=(data>>8)&0xFF;;
+           ^
+Src/drv_i2c.c:145:11: warning: array subscript is above array bounds [-Warray-bounds]
+     buffer[5]=data&0xFF;
+           ^
+Src/mpu9250.c: In function 'calc_matRot':
+Src/mpu9250.c:327:33: warning: variable 'R23' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                                 ^
+Src/mpu9250.c:327:23: warning: variable 'R21' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                       ^
+Src/mpu9250.c:327:18: warning: variable 'R13' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+                  ^
+Src/mpu9250.c:327:8: warning: variable 'R11' set but not used [-Wunused-but-set-variable]
+  float R11, R12, R13, R21, R22, R23, R31, R32, R33;
+        ^
+arm-none-eabi-objcopy -O ihex template.elf   template.hex
+arm-none-eabi-objcopy -O binary template.elf template.bin

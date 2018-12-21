@@ -1,8 +1,8 @@
 #include "main.h"
 //====================================================================
 #define VL6180X	0 //Carte sensor de lumininosite
-#define MPU9250	1
-#define MPL115A_ANEMO 0
+#define MPU9250	0
+#define MPL115A_ANEMO 1
 //====================================================================
 //			CAN ACCEPTANCE FILTER
 //====================================================================
@@ -85,6 +85,7 @@ int main(void)
 
 #if VL6180X
     VL6180x_Init();
+    HAL_Delay(50);
 #endif
 
 #if MPU9250
@@ -233,8 +234,9 @@ void VL6180x_Step(void)
 {
 	DISP_ExecLoopBody();
 
-  //new_switch_state = XNUCLEO6180XA1_GetSwitch();
-  if (new_switch_state = switch_state) {
+  new_switch_state = XNUCLEO6180XA1_GetSwitch();
+
+  if (new_switch_state != switch_state) {
       switch_state=new_switch_state;
       status = VL6180x_Prepare(theVL6180xDev);
       // Increase convergence time to the max (this is because proximity config of API is used)
@@ -243,7 +245,7 @@ void VL6180x_Step(void)
           AbortErr("ErIn");
       }
       else{
-          if (switch_state == 0) {
+          if (switch_state == SWITCH_VAL_RANGING) {
               VL6180x_SetupGPIO1(theVL6180xDev, GPIOx_SELECT_GPIO_INTERRUPT_OUTPUT, INTR_POL_HIGH);
               VL6180x_ClearAllInterrupt(theVL6180xDev);
               State.ScaleSwapCnt=0;
